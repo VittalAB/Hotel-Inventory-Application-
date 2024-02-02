@@ -1,0 +1,95 @@
+<p>Welcome to {{ '{{' + hotelName + '}}'}} this is an example of interpolation in angular</p>
+
+
+<div [hidden]="hide">
+    This is an example for property binding 
+    Number of rooms 
+    <div *ngIf="rooms.available > 0" [ngStyle]="{
+        color: 'green'
+    }"  [innerText]="roms">
+        
+    </div>
+    
+</div>
+<!-- above is equvivalent to 
+    document.getElementByID('rooms').innerText = rooms;
+-->
+
+
+<!-- {{ rooms?.available ?? 'No rooms' }} -->
+
+
+<!-- optional chaining  -->
+
+    <!-- it is used for debugging -->
+    <!-- {{roomlist | json}} -->
+
+<div *ngIf="roomSelected">
+    selectedRoom details 
+    {{ roomSelected | json}}
+</div>
+
+<div>
+    <button (click)="addRoom()">Add room</button>
+</div>
+
+
+<div *ngIf="rooms$ | async as roomsAsync">
+    <!-- here instead of rooms$ | async u can use alias also -->
+    <app-rooms-list [rooms]="rooms$ | async" [title]="title" (selectedRoom)="selectRoom($event)">
+        
+        <!-- this event is recieved from the child  -->
+        
+    </app-rooms-list>
+</div>
+
+<h1>
+    {{getError$ | async}}
+</h1>
+
+<h2>
+    Number of rooms count {{ roomsCount$  | async }}
+</h2>
+
+
+<!-- <app-header >
+
+</app-header>
+<app-header >
+
+</app-header>
+<app-header >
+
+</app-header>
+<app-header >
+
+</app-header> -->
+
+
+<!-- here async pipe will get the data (subcribe) and unwrap it meaning it will unsubscribe also  -->
+
+<!-- {{ rooms$ | async | json }} -->
+
+
+<button (click)="myfunc()">
+    Toggle
+</button>
+
+
+<button (click)="editRoom()">Update</button>
+
+
+<button class="btn btn-danger" (click)="deleteRoom()">Delete Room</button>
+
+
+<h1>
+    {{ totalByte }} Loaded ....
+</h1>
+
+<!-- angular material ui -->
+
+
+<!--  this is for the nested routing where children routed components are displayed  ... -->
+<router-outlet>
+
+</router-outlet>

@@ -1,0 +1,80 @@
+<p>rooms-add works!</p>
+
+<!-- {{ room | json }} -->
+
+form template variable values 
+<br>
+
+valid : - {{ roomsForm.valid | json }}
+<br>
+invalid : -{{ roomsForm.invalid | json }}
+<br>
+dirty : -{{ roomsForm.dirty | json }}
+<br>
+pristine : -{{ roomsForm.pristine | json }}
+<br>
+vaue : -{{ roomsForm.value | json }}
+<br>
+
+
+
+<div class="alert alert-success" *ngIf="roomsForm.valid">
+    {{ successMsg }}
+</div>
+
+
+<div class="alert alert-danger" *ngIf="roomAmenities.errors?.['minlength'] && roomAmenities.dirty">
+    <!-- {{ roomAmenities.errors | json }} -->
+    Amenities should be 5 char length 
+
+</div>
+
+<div class="alert alert-danger" *ngIf="roomAmenities.errors && roomAmenities.dirty">
+    <!-- {{ roomAmenities.errors | json }} -->
+    All
+
+</div>
+
+
+<div class="alert alert-danger" *ngIf="email.errors && email.dirty">
+    Enter Correct Email 
+</div>
+
+
+
+<form action="" method="post" (ngSubmit)="AddRoom(roomsForm)" #roomsForm="ngForm" >
+    <div class="form-group">
+        <input type="text" class="form-control" name="roomType" placeholder="Room Type"  [(ngModel)]="room.roomType" required [ngModelOptions]="{updateOn : 'blur'}">
+
+    </div>
+    <div class="form-group">
+        <input #roomAmenities="ngModel" type="text" class="form-control" name="amenities" placeholder="Room amenities" [(ngModel)]="room.amenities" required minlength="5">
+
+    </div>
+    <div class="form-group">
+        <input type="number" class="form-control" name="price" placeholder="Room price" [(ngModel)]="room.price" required>
+ 
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="photos" placeholder="Room photos" [(ngModel)]="room.photos" required="">
+
+    </div>
+    <div class="form-group">
+        <input type="datetime" class="form-control" name="checkinTime" placeholder="Room checkinTime" [(ngModel)]="room.checkinTime" required>
+
+    </div>
+    <div class="form-group">
+        <input type="datetime" class="form-control" name="checkoutTime" placeholder="Room checkoutTime" [(ngModel)]="room.checkoutTime" required>
+
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" type="email" name="email" id="email" required #email="ngModel" [(ngModel)]="xemail" placeholder="Email" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$">
+    </div>
+
+    <div class="form-group">
+        <button [disabled]="roomsForm.invalid" type="submit" class="btn btn-danger">submit</button>
+
+    </div>
+</form>
+

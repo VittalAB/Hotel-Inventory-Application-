@@ -1,0 +1,21 @@
+<p>login works!</p>
+<form action="" (ngSubmit)="login()">
+    <div class="form-group">
+            <input type="email" #emailC="ngModel" name="email" id="email" placeholder="email" [(ngModel)]="email" required class="form-control" appHover color="green" appEmailValidator>
+    </div>
+
+    <div *ngIf="emailC.errors">
+        {{emailC.errors | json }}
+    </div>
+    <!-- here in above input element appHover is the custome directive  -->
+
+    <div class="form-group">
+            <input type="password" #passwordC="ngModel" name="password" id="password" placeholder="password" [(ngModel)]="password" class="form-control" appHover>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-danger">
+            Login
+        </button>
+    </div>
+</form>
